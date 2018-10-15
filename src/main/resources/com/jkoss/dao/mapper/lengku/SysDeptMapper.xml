@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkoss.dao.SysDeptMapper" >
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.SysDept" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="DEPTNAME" property="DEPTNAME" jdbcType="VARCHAR" />
+    <result column="PARENTID" property="PARENTID" jdbcType="INTEGER" />
+    <result column="DEPTCODE" property="DEPTCODE" jdbcType="VARCHAR" />
+    <result column="RESPONSER" property="RESPONSER" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="ADDRESS" jdbcType="VARCHAR" />
+    <result column="ZCODE" property="ZCODE" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="TELEPHONE" jdbcType="VARCHAR" />
+    <result column="FAX" property="FAX" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="EMAIL" jdbcType="VARCHAR" />
+    <result column="WEBSITE" property="WEBSITE" jdbcType="VARCHAR" />
+    <result column="STATE" property="STATE" jdbcType="INTEGER" />
+    <result column="CREATER" property="CREATER" jdbcType="VARCHAR" />
+    <result column="REMARK" property="REMARK" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, DEPTNAME, PARENTID, DEPTCODE, RESPONSER, ADDRESS, ZCODE, TELEPHONE, FAX, EMAIL, 
+    WEBSITE, STATE, CREATER, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from dept
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from dept
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.SysDept" >
+    insert into dept (ID, DEPTNAME, PARENTID, 
+      DEPTCODE, RESPONSER, ADDRESS, 
+      ZCODE, TELEPHONE, FAX, 
+      EMAIL, WEBSITE, STATE, 
+      CREATER, REMARK)
+    values (#{ID,jdbcType=INTEGER}, #{DEPTNAME,jdbcType=VARCHAR}, #{PARENTID,jdbcType=INTEGER}, 
+      #{DEPTCODE,jdbcType=VARCHAR}, #{RESPONSER,jdbcType=VARCHAR}, #{ADDRESS,jdbcType=VARCHAR}, 
+      #{ZCODE,jdbcType=VARCHAR}, #{TELEPHONE,jdbcType=VARCHAR}, #{FAX,jdbcType=VARCHAR}, 
+      #{EMAIL,jdbcType=VARCHAR}, #{WEBSITE,jdbcType=VARCHAR}, #{STATE,jdbcType=INTEGER}, 
+      #{CREATER,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.SysDept" >
+    insert into dept
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="DEPTNAME != null" >
+        DEPTNAME,
+      </if>
+      <if test="PARENTID != null" >
+        PARENTID,
+      </if>
+      <if test="DEPTCODE != null" >
+        DEPTCODE,
+      </if>
+      <if test="RESPONSER != null" >
+        RESPONSER,
+      </if>
+      <if test="ADDRESS != null" >
+        ADDRESS,
+      </if>
+      <if test="ZCODE != null" >
+        ZCODE,
+      </if>
+      <if test="TELEPHONE != null" >
+        TELEPHONE,
+      </if>
+      <if test="FAX != null" >
+        FAX,
+      </if>
+      <if test="EMAIL != null" >
+        EMAIL,
+      </if>
+      <if test="WEBSITE != null" >
+        WEBSITE,
+      </if>
+      <if test="STATE != null" >
+        STATE,
+      </if>
+      <if test="CREATER != null" >
+        CREATER,
+      </if>
+      <if test="REMARK != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="DEPTNAME != null" >
+        #{DEPTNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PARENTID != null" >
+        #{PARENTID,jdbcType=INTEGER},
+      </if>
+      <if test="DEPTCODE != null" >
+        #{DEPTCODE,jdbcType=VARCHAR},
+      </if>
+      <if test="RESPONSER != null" >
+        #{RESPONSER,jdbcType=VARCHAR},
+      </if>
+      <if test="ADDRESS != null" >
+        #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="ZCODE != null" >
+        #{ZCODE,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null" >
+        #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="FAX != null" >
+        #{FAX,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null" >
+        #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="WEBSITE != null" >
+        #{WEBSITE,jdbcType=VARCHAR},
+      </if>
+      <if test="STATE != null" >
+        #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="CREATER != null" >
+        #{CREATER,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null" >
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.SysDept" >
+    update dept
+    <set >
+      <if test="DEPTNAME != null" >
+        DEPTNAME = #{DEPTNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PARENTID != null" >
+        PARENTID = #{PARENTID,jdbcType=INTEGER},
+      </if>
+      <if test="DEPTCODE != null" >
+        DEPTCODE = #{DEPTCODE,jdbcType=VARCHAR},
+      </if>
+      <if test="RESPONSER != null" >
+        RESPONSER = #{RESPONSER,jdbcType=VARCHAR},
+      </if>
+      <if test="ADDRESS != null" >
+        ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="ZCODE != null" >
+        ZCODE = #{ZCODE,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null" >
+        TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="FAX != null" >
+        FAX = #{FAX,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null" >
+        EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="WEBSITE != null" >
+        WEBSITE = #{WEBSITE,jdbcType=VARCHAR},
+      </if>
+      <if test="STATE != null" >
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="CREATER != null" >
+        CREATER = #{CREATER,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null" >
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.SysDept" >
+    update dept
+    set DEPTNAME = #{DEPTNAME,jdbcType=VARCHAR},
+      PARENTID = #{PARENTID,jdbcType=INTEGER},
+      DEPTCODE = #{DEPTCODE,jdbcType=VARCHAR},
+      RESPONSER = #{RESPONSER,jdbcType=VARCHAR},
+      ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      ZCODE = #{ZCODE,jdbcType=VARCHAR},
+      TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      FAX = #{FAX,jdbcType=VARCHAR},
+      EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      WEBSITE = #{WEBSITE,jdbcType=VARCHAR},
+      STATE = #{STATE,jdbcType=INTEGER},
+      CREATER = #{CREATER,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

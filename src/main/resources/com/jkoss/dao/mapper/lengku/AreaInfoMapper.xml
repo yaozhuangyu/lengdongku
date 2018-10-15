@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.AreaInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.AreaInfo">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="AREANAME" jdbcType="VARCHAR" property="AREANAME" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, AREANAME, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from areainfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from areainfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.AreaInfo">
+    insert into areainfo (ID, AREANAME, REMARK
+      )
+    values (#{ID,jdbcType=INTEGER}, #{AREANAME,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.AreaInfo">
+    insert into areainfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="AREANAME != null">
+        AREANAME,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="AREANAME != null">
+        #{AREANAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.AreaInfo">
+    update areainfo
+    <set>
+      <if test="AREANAME != null">
+        AREANAME = #{AREANAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.AreaInfo">
+    update areainfo
+    set AREANAME = #{AREANAME,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

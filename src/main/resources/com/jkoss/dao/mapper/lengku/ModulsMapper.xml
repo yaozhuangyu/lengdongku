@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.ModulsMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.Moduls">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="PARENTID" jdbcType="INTEGER" property="PARENTID" />
+    <result column="MODULSNAME" jdbcType="VARCHAR" property="MODULSNAME" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, MODULSNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from moduls
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from moduls
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.Moduls">
+    insert into moduls (ID, PARENTID, MODULSNAME
+      )
+    values (#{ID,jdbcType=INTEGER}, #{PARENTID,jdbcType=INTEGER}, #{MODULSNAME,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.Moduls">
+    insert into moduls
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="PARENTID != null">
+        PARENTID,
+      </if>
+      <if test="MODULSNAME != null">
+        MODULSNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="PARENTID != null">
+        #{PARENTID,jdbcType=INTEGER},
+      </if>
+      <if test="MODULSNAME != null">
+        #{MODULSNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.Moduls">
+    update moduls
+    <set>
+      <if test="PARENTID != null">
+        PARENTID = #{PARENTID,jdbcType=INTEGER},
+      </if>
+      <if test="MODULSNAME != null">
+        MODULSNAME = #{MODULSNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.Moduls">
+    update moduls
+    set PARENTID = #{PARENTID,jdbcType=INTEGER},
+      MODULSNAME = #{MODULSNAME,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

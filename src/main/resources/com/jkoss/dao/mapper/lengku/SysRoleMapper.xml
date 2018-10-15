@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkoss.dao.SysRoleMapper" >
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.SysRole" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="DEPTID" property="DEPTID" jdbcType="INTEGER" />
+    <result column="ORDERNO" property="ORDERNO" jdbcType="INTEGER" />
+    <result column="ROLENAME" property="ROLENAME" jdbcType="VARCHAR" />
+    <result column="REMARK" property="REMARK" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMap2" type="com.jkoss.pojo.SysRole" >
+    <id column="ID" property="ID" jdbcType="INTEGER" />
+    <result column="DEPTID" property="DEPTID" jdbcType="INTEGER" />
+    <result column="ORDERNO" property="ORDERNO" jdbcType="INTEGER" />
+    <result column="ROLENAME" property="ROLENAME" jdbcType="VARCHAR" />
+    <result column="REMARK" property="REMARK" jdbcType="VARCHAR" />
+    <collection property="rights" ofType="com.jkoss.pojo.SysRight" fetchType="eager"
+    	select="com.jkoss.dao.SysRightMapper.selectByRoleID" column="ID"></collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    ID, DEPTID, ORDERNO, ROLENAME, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.SysRole" >
+    insert into role (ID, DEPTID, ORDERNO, 
+      ROLENAME, REMARK)
+    values (#{ID,jdbcType=INTEGER}, #{DEPTID,jdbcType=INTEGER}, #{ORDERNO,jdbcType=INTEGER}, 
+      #{ROLENAME,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.SysRole" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        ID,
+      </if>
+      <if test="DEPTID != null" >
+        DEPTID,
+      </if>
+      <if test="ORDERNO != null" >
+        ORDERNO,
+      </if>
+      <if test="ROLENAME != null" >
+        ROLENAME,
+      </if>
+      <if test="REMARK != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ID != null" >
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="DEPTID != null" >
+        #{DEPTID,jdbcType=INTEGER},
+      </if>
+      <if test="ORDERNO != null" >
+        #{ORDERNO,jdbcType=INTEGER},
+      </if>
+      <if test="ROLENAME != null" >
+        #{ROLENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null" >
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.SysRole" >
+    update role
+    <set >
+      <if test="DEPTID != null" >
+        DEPTID = #{DEPTID,jdbcType=INTEGER},
+      </if>
+      <if test="ORDERNO != null" >
+        ORDERNO = #{ORDERNO,jdbcType=INTEGER},
+      </if>
+      <if test="ROLENAME != null" >
+        ROLENAME = #{ROLENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null" >
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.SysRole" >
+    update role
+    set DEPTID = #{DEPTID,jdbcType=INTEGER},
+      ORDERNO = #{ORDERNO,jdbcType=INTEGER},
+      ROLENAME = #{ROLENAME,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

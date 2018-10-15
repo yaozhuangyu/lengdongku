@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.UserRole">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="USERID" jdbcType="INTEGER" property="USERID" />
+    <result column="ROLEID" jdbcType="INTEGER" property="ROLEID" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERID, ROLEID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userrole
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userrole
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.UserRole">
+    insert into userrole (ID, USERID, ROLEID
+      )
+    values (#{ID,jdbcType=INTEGER}, #{USERID,jdbcType=INTEGER}, #{ROLEID,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.UserRole">
+    insert into userrole
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="USERID != null">
+        USERID,
+      </if>
+      <if test="ROLEID != null">
+        ROLEID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="USERID != null">
+        #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="ROLEID != null">
+        #{ROLEID,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.UserRole">
+    update userrole
+    <set>
+      <if test="USERID != null">
+        USERID = #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="ROLEID != null">
+        ROLEID = #{ROLEID,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.UserRole">
+    update userrole
+    set USERID = #{USERID,jdbcType=INTEGER},
+      ROLEID = #{ROLEID,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

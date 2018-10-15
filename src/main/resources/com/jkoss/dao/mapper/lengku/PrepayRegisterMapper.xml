@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.PrepayRegisterMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.PrepayRegister">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="CUSTOMERID" jdbcType="INTEGER" property="CUSTOMERID" />
+    <result column="PREMONEY" jdbcType="REAL" property="PREMONEY" />
+    <result column="PREDATE" jdbcType="DATE" property="PREDATE" />
+    <result column="USERID" jdbcType="INTEGER" property="USERID" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CUSTOMERID, PREMONEY, PREDATE, USERID, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from prepayregister
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from prepayregister
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.PrepayRegister">
+    insert into prepayregister (ID, CUSTOMERID, PREMONEY, 
+      PREDATE, USERID, REMARK
+      )
+    values (#{ID,jdbcType=INTEGER}, #{CUSTOMERID,jdbcType=INTEGER}, #{PREMONEY,jdbcType=REAL}, 
+      #{PREDATE,jdbcType=DATE}, #{USERID,jdbcType=INTEGER}, #{REMARK,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.PrepayRegister">
+    insert into prepayregister
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID,
+      </if>
+      <if test="PREMONEY != null">
+        PREMONEY,
+      </if>
+      <if test="PREDATE != null">
+        PREDATE,
+      </if>
+      <if test="USERID != null">
+        USERID,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="PREMONEY != null">
+        #{PREMONEY,jdbcType=REAL},
+      </if>
+      <if test="PREDATE != null">
+        #{PREDATE,jdbcType=DATE},
+      </if>
+      <if test="USERID != null">
+        #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.PrepayRegister">
+    update prepayregister
+    <set>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="PREMONEY != null">
+        PREMONEY = #{PREMONEY,jdbcType=REAL},
+      </if>
+      <if test="PREDATE != null">
+        PREDATE = #{PREDATE,jdbcType=DATE},
+      </if>
+      <if test="USERID != null">
+        USERID = #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.PrepayRegister">
+    update prepayregister
+    set CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      PREMONEY = #{PREMONEY,jdbcType=REAL},
+      PREDATE = #{PREDATE,jdbcType=DATE},
+      USERID = #{USERID,jdbcType=INTEGER},
+      REMARK = #{REMARK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

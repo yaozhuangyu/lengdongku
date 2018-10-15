@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.LogInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.LogInfo">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="USERID" jdbcType="INTEGER" property="USERID" />
+    <result column="OPRATETIME" jdbcType="DATE" property="OPRATETIME" />
+    <result column="OPRATEMODULS" jdbcType="INTEGER" property="OPRATEMODULS" />
+    <result column="OPRATENAME" jdbcType="VARCHAR" property="OPRATENAME" />
+    <result column="DETAILINFO" jdbcType="VARCHAR" property="DETAILINFO" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, USERID, OPRATETIME, OPRATEMODULS, OPRATENAME, DETAILINFO
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from loginfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from loginfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.LogInfo">
+    insert into loginfo (ID, USERID, OPRATETIME, 
+      OPRATEMODULS, OPRATENAME, DETAILINFO
+      )
+    values (#{ID,jdbcType=INTEGER}, #{USERID,jdbcType=INTEGER}, #{OPRATETIME,jdbcType=DATE}, 
+      #{OPRATEMODULS,jdbcType=INTEGER}, #{OPRATENAME,jdbcType=VARCHAR}, #{DETAILINFO,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.LogInfo">
+    insert into loginfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="USERID != null">
+        USERID,
+      </if>
+      <if test="OPRATETIME != null">
+        OPRATETIME,
+      </if>
+      <if test="OPRATEMODULS != null">
+        OPRATEMODULS,
+      </if>
+      <if test="OPRATENAME != null">
+        OPRATENAME,
+      </if>
+      <if test="DETAILINFO != null">
+        DETAILINFO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="USERID != null">
+        #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="OPRATETIME != null">
+        #{OPRATETIME,jdbcType=DATE},
+      </if>
+      <if test="OPRATEMODULS != null">
+        #{OPRATEMODULS,jdbcType=INTEGER},
+      </if>
+      <if test="OPRATENAME != null">
+        #{OPRATENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="DETAILINFO != null">
+        #{DETAILINFO,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.LogInfo">
+    update loginfo
+    <set>
+      <if test="USERID != null">
+        USERID = #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="OPRATETIME != null">
+        OPRATETIME = #{OPRATETIME,jdbcType=DATE},
+      </if>
+      <if test="OPRATEMODULS != null">
+        OPRATEMODULS = #{OPRATEMODULS,jdbcType=INTEGER},
+      </if>
+      <if test="OPRATENAME != null">
+        OPRATENAME = #{OPRATENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="DETAILINFO != null">
+        DETAILINFO = #{DETAILINFO,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.LogInfo">
+    update loginfo
+    set USERID = #{USERID,jdbcType=INTEGER},
+      OPRATETIME = #{OPRATETIME,jdbcType=DATE},
+      OPRATEMODULS = #{OPRATEMODULS,jdbcType=INTEGER},
+      OPRATENAME = #{OPRATENAME,jdbcType=VARCHAR},
+      DETAILINFO = #{DETAILINFO,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

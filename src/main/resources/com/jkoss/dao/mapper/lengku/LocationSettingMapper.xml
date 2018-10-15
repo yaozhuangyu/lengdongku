@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.LocationSettingMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.LocationSetting">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="CARDNO" jdbcType="VARCHAR" property="CARDNO" />
+    <result column="CARDNAME" jdbcType="VARCHAR" property="CARDNAME" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="CAPACITY" jdbcType="INTEGER" property="CAPACITY" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+    <result column="AREAID" jdbcType="INTEGER" property="AREAID" />
+    <result column="TOTOL" jdbcType="INTEGER" property="TOTOL" />
+    <result column="INUSE" jdbcType="INTEGER" property="INUSE" />
+    <result column="NOTUSE" jdbcType="INTEGER" property="NOTUSE" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMap2" type="com.jkoss.pojo.LocationSetting">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="CARDNO" jdbcType="VARCHAR" property="CARDNO" />
+    <result column="CARDNAME" jdbcType="VARCHAR" property="CARDNAME" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="CAPACITY" jdbcType="INTEGER" property="CAPACITY" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+    <result column="AREAID" jdbcType="INTEGER" property="AREAID" />
+    <result column="TOTOL" jdbcType="INTEGER" property="TOTOL" />
+    <result column="INUSE" jdbcType="INTEGER" property="INUSE" />
+    <result column="NOTUSE" jdbcType="INTEGER" property="NOTUSE" />
+    <collection property="cabinatsetting" ofType="com.jkoss.pojo.CabinatSetting"  fetchType="eager"
+           select="com.jkoss.dao.CabinatSettingMapper.selectByID" column="ID" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+    ID, CARDNO, CARDNAME, REMARK, CAPACITY, STATE, AREAID, TOTOL, INUSE, NOTUSE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from locationsetting
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from locationsetting
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.LocationSetting">
+    insert into locationsetting (ID, CARDNO, CARDNAME, 
+      REMARK, CAPACITY, STATE, 
+      AREAID, TOTOL, INUSE, 
+      NOTUSE)
+    values (#{ID,jdbcType=INTEGER}, #{CARDNO,jdbcType=VARCHAR}, #{CARDNAME,jdbcType=VARCHAR}, 
+      #{REMARK,jdbcType=VARCHAR}, #{CAPACITY,jdbcType=INTEGER}, #{STATE,jdbcType=INTEGER}, 
+      #{AREAID,jdbcType=INTEGER}, #{TOTOL,jdbcType=INTEGER}, #{INUSE,jdbcType=INTEGER}, 
+      #{NOTUSE,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.LocationSetting">
+    insert into locationsetting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="CARDNO != null">
+        CARDNO,
+      </if>
+      <if test="CARDNAME != null">
+        CARDNAME,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="CAPACITY != null">
+        CAPACITY,
+      </if>
+      <if test="STATE != null">
+        STATE,
+      </if>
+      <if test="AREAID != null">
+        AREAID,
+      </if>
+      <if test="TOTOL != null">
+        TOTOL,
+      </if>
+      <if test="INUSE != null">
+        INUSE,
+      </if>
+      <if test="NOTUSE != null">
+        NOTUSE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="CARDNO != null">
+        #{CARDNO,jdbcType=VARCHAR},
+      </if>
+      <if test="CARDNAME != null">
+        #{CARDNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="CAPACITY != null">
+        #{CAPACITY,jdbcType=INTEGER},
+      </if>
+      <if test="STATE != null">
+        #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="AREAID != null">
+        #{AREAID,jdbcType=INTEGER},
+      </if>
+      <if test="TOTOL != null">
+        #{TOTOL,jdbcType=INTEGER},
+      </if>
+      <if test="INUSE != null">
+        #{INUSE,jdbcType=INTEGER},
+      </if>
+      <if test="NOTUSE != null">
+        #{NOTUSE,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.LocationSetting">
+    update locationsetting
+    <set>
+      <if test="CARDNO != null">
+        CARDNO = #{CARDNO,jdbcType=VARCHAR},
+      </if>
+      <if test="CARDNAME != null">
+        CARDNAME = #{CARDNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="CAPACITY != null">
+        CAPACITY = #{CAPACITY,jdbcType=INTEGER},
+      </if>
+      <if test="STATE != null">
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="AREAID != null">
+        AREAID = #{AREAID,jdbcType=INTEGER},
+      </if>
+      <if test="TOTOL != null">
+        TOTOL = #{TOTOL,jdbcType=INTEGER},
+      </if>
+      <if test="INUSE != null">
+        INUSE = #{INUSE,jdbcType=INTEGER},
+      </if>
+      <if test="NOTUSE != null">
+        NOTUSE = #{NOTUSE,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.LocationSetting">
+    update locationsetting
+    set CARDNO = #{CARDNO,jdbcType=VARCHAR},
+      CARDNAME = #{CARDNAME,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      CAPACITY = #{CAPACITY,jdbcType=INTEGER},
+      STATE = #{STATE,jdbcType=INTEGER},
+      AREAID = #{AREAID,jdbcType=INTEGER},
+      TOTOL = #{TOTOL,jdbcType=INTEGER},
+      INUSE = #{INUSE,jdbcType=INTEGER},
+      NOTUSE = #{NOTUSE,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

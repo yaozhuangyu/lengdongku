@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.Customer">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="TYPE" jdbcType="INTEGER" property="TYPE" />
+    <result column="CUSTOMERNAME" jdbcType="VARCHAR" property="CUSTOMERNAME" />
+    <result column="NAME" jdbcType="VARCHAR" property="NAME" />
+    <result column="TELEPHONE" jdbcType="VARCHAR" property="TELEPHONE" />
+    <result column="IDENTITICODE" jdbcType="VARCHAR" property="IDENTITICODE" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="ADDRESS" />
+    <result column="LEAVEMONEY" jdbcType="REAL" property="LEAVEMONEY" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, TYPE, CUSTOMERNAME, NAME, TELEPHONE, IDENTITICODE, ADDRESS, LEAVEMONEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customer
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customer
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.Customer">
+    insert into customer (ID, TYPE, CUSTOMERNAME, 
+      NAME, TELEPHONE, IDENTITICODE, 
+      ADDRESS, LEAVEMONEY)
+    values (#{ID,jdbcType=INTEGER}, #{TYPE,jdbcType=INTEGER}, #{CUSTOMERNAME,jdbcType=VARCHAR}, 
+      #{NAME,jdbcType=VARCHAR}, #{TELEPHONE,jdbcType=VARCHAR}, #{IDENTITICODE,jdbcType=VARCHAR}, 
+      #{ADDRESS,jdbcType=VARCHAR}, #{LEAVEMONEY,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.Customer">
+    insert into customer
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="TYPE != null">
+        TYPE,
+      </if>
+      <if test="CUSTOMERNAME != null">
+        CUSTOMERNAME,
+      </if>
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="TELEPHONE != null">
+        TELEPHONE,
+      </if>
+      <if test="IDENTITICODE != null">
+        IDENTITICODE,
+      </if>
+      <if test="ADDRESS != null">
+        ADDRESS,
+      </if>
+      <if test="LEAVEMONEY != null">
+        LEAVEMONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="TYPE != null">
+        #{TYPE,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERNAME != null">
+        #{CUSTOMERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null">
+        #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="IDENTITICODE != null">
+        #{IDENTITICODE,jdbcType=VARCHAR},
+      </if>
+      <if test="ADDRESS != null">
+        #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="LEAVEMONEY != null">
+        #{LEAVEMONEY,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.Customer">
+    update customer
+    <set>
+      <if test="TYPE != null">
+        TYPE = #{TYPE,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERNAME != null">
+        CUSTOMERNAME = #{CUSTOMERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null">
+        TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="IDENTITICODE != null">
+        IDENTITICODE = #{IDENTITICODE,jdbcType=VARCHAR},
+      </if>
+      <if test="ADDRESS != null">
+        ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="LEAVEMONEY != null">
+        LEAVEMONEY = #{LEAVEMONEY,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.Customer">
+    update customer
+    set TYPE = #{TYPE,jdbcType=INTEGER},
+      CUSTOMERNAME = #{CUSTOMERNAME,jdbcType=VARCHAR},
+      NAME = #{NAME,jdbcType=VARCHAR},
+      TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      IDENTITICODE = #{IDENTITICODE,jdbcType=VARCHAR},
+      ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      LEAVEMONEY = #{LEAVEMONEY,jdbcType=REAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.CustomerPayRecordsMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.CustomerPayRecords">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="REGID" jdbcType="INTEGER" property="REGID" />
+    <result column="USERID" jdbcType="INTEGER" property="USERID" />
+    <result column="CUSTOMERID" jdbcType="INTEGER" property="CUSTOMERID" />
+    <result column="PAYDATE" jdbcType="TIMESTAMP" property="PAYDATE" />
+    <result column="MONEY" jdbcType="REAL" property="MONEY" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, REGID, USERID, CUSTOMERID, PAYDATE, MONEY
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from customerpayrecords
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from customerpayrecords
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.CustomerPayRecords">
+    insert into customerpayrecords (ID, REGID, USERID, 
+      CUSTOMERID, PAYDATE, MONEY
+      )
+    values (#{ID,jdbcType=INTEGER}, #{REGID,jdbcType=INTEGER}, #{USERID,jdbcType=INTEGER}, 
+      #{CUSTOMERID,jdbcType=INTEGER}, #{PAYDATE,jdbcType=TIMESTAMP}, #{MONEY,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.CustomerPayRecords">
+    insert into customerpayrecords
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="REGID != null">
+        REGID,
+      </if>
+      <if test="USERID != null">
+        USERID,
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID,
+      </if>
+      <if test="PAYDATE != null">
+        PAYDATE,
+      </if>
+      <if test="MONEY != null">
+        MONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="REGID != null">
+        #{REGID,jdbcType=INTEGER},
+      </if>
+      <if test="USERID != null">
+        #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="PAYDATE != null">
+        #{PAYDATE,jdbcType=TIMESTAMP},
+      </if>
+      <if test="MONEY != null">
+        #{MONEY,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.CustomerPayRecords">
+    update customerpayrecords
+    <set>
+      <if test="REGID != null">
+        REGID = #{REGID,jdbcType=INTEGER},
+      </if>
+      <if test="USERID != null">
+        USERID = #{USERID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="PAYDATE != null">
+        PAYDATE = #{PAYDATE,jdbcType=TIMESTAMP},
+      </if>
+      <if test="MONEY != null">
+        MONEY = #{MONEY,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.CustomerPayRecords">
+    update customerpayrecords
+    set REGID = #{REGID,jdbcType=INTEGER},
+      USERID = #{USERID,jdbcType=INTEGER},
+      CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      PAYDATE = #{PAYDATE,jdbcType=TIMESTAMP},
+      MONEY = #{MONEY,jdbcType=REAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

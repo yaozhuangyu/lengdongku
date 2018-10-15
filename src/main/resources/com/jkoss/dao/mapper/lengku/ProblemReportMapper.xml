@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.ProblemReportMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.ProblemReport">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="CREATER" jdbcType="INTEGER" property="CREATER" />
+    <result column="LOCATION" jdbcType="VARCHAR" property="LOCATION" />
+    <result column="TYPE" jdbcType="INTEGER" property="TYPE" />
+    <result column="EMERCY" jdbcType="INTEGER" property="EMERCY" />
+    <result column="CREATETIME" jdbcType="DATE" property="CREATETIME" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="DESCRIPTION" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CREATER, LOCATION, TYPE, EMERCY, CREATETIME, DESCRIPTION, REMARK, STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from problemreport
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from problemreport
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.ProblemReport">
+    insert into problemreport (ID, CREATER, LOCATION, 
+      TYPE, EMERCY, CREATETIME, 
+      DESCRIPTION, REMARK, STATE
+      )
+    values (#{ID,jdbcType=INTEGER}, #{CREATER,jdbcType=INTEGER}, #{LOCATION,jdbcType=VARCHAR}, 
+      #{TYPE,jdbcType=INTEGER}, #{EMERCY,jdbcType=INTEGER}, #{CREATETIME,jdbcType=DATE}, 
+      #{DESCRIPTION,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR}, #{STATE,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.ProblemReport">
+    insert into problemreport
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="CREATER != null">
+        CREATER,
+      </if>
+      <if test="LOCATION != null">
+        LOCATION,
+      </if>
+      <if test="TYPE != null">
+        TYPE,
+      </if>
+      <if test="EMERCY != null">
+        EMERCY,
+      </if>
+      <if test="CREATETIME != null">
+        CREATETIME,
+      </if>
+      <if test="DESCRIPTION != null">
+        DESCRIPTION,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="STATE != null">
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="CREATER != null">
+        #{CREATER,jdbcType=INTEGER},
+      </if>
+      <if test="LOCATION != null">
+        #{LOCATION,jdbcType=VARCHAR},
+      </if>
+      <if test="TYPE != null">
+        #{TYPE,jdbcType=INTEGER},
+      </if>
+      <if test="EMERCY != null">
+        #{EMERCY,jdbcType=INTEGER},
+      </if>
+      <if test="CREATETIME != null">
+        #{CREATETIME,jdbcType=DATE},
+      </if>
+      <if test="DESCRIPTION != null">
+        #{DESCRIPTION,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="STATE != null">
+        #{STATE,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.ProblemReport">
+    update problemreport
+    <set>
+      <if test="CREATER != null">
+        CREATER = #{CREATER,jdbcType=INTEGER},
+      </if>
+      <if test="LOCATION != null">
+        LOCATION = #{LOCATION,jdbcType=VARCHAR},
+      </if>
+      <if test="TYPE != null">
+        TYPE = #{TYPE,jdbcType=INTEGER},
+      </if>
+      <if test="EMERCY != null">
+        EMERCY = #{EMERCY,jdbcType=INTEGER},
+      </if>
+      <if test="CREATETIME != null">
+        CREATETIME = #{CREATETIME,jdbcType=DATE},
+      </if>
+      <if test="DESCRIPTION != null">
+        DESCRIPTION = #{DESCRIPTION,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="STATE != null">
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.ProblemReport">
+    update problemreport
+    set CREATER = #{CREATER,jdbcType=INTEGER},
+      LOCATION = #{LOCATION,jdbcType=VARCHAR},
+      TYPE = #{TYPE,jdbcType=INTEGER},
+      EMERCY = #{EMERCY,jdbcType=INTEGER},
+      CREATETIME = #{CREATETIME,jdbcType=DATE},
+      DESCRIPTION = #{DESCRIPTION,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      STATE = #{STATE,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

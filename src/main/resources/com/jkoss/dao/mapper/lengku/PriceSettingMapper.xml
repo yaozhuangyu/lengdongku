@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.PriceSettingMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.PriceSetting">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="UNIT" jdbcType="INTEGER" property="UNIT" />
+    <result column="AREAID" jdbcType="INTEGER" property="AREAID" />
+    <result column="CARDID" jdbcType="INTEGER" property="CARDID" />
+    <result column="CABINID" jdbcType="INTEGER" property="CABINID" />
+    <result column="FRUITCATEGORYID" jdbcType="INTEGER" property="FRUITCATEGORYID" />
+    <result column="CUSTOMERID" jdbcType="INTEGER" property="CUSTOMERID" />
+    <result column="UNITNUM" jdbcType="INTEGER" property="UNITNUM" />
+    <result column="DISCARD" jdbcType="INTEGER" property="DISCARD" />
+    <result column="PRICE" jdbcType="REAL" property="PRICE" />
+    <result column="FLAG" jdbcType="INTEGER" property="FLAG" />
+    <result column="ISPAY" jdbcType="INTEGER" property="ISPAY" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMap2" type="com.jkoss.pojo.PriceSetting">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="UNIT" jdbcType="INTEGER" property="UNIT" />
+    <result column="AREAID" jdbcType="INTEGER" property="AREAID" />
+    <result column="CARDID" jdbcType="INTEGER" property="CARDID" />
+    <result column="CABINID" jdbcType="INTEGER" property="CABINID" />
+    <result column="FRUITCATEGORYID" jdbcType="INTEGER" property="FRUITCATEGORYID" />
+    <result column="CUSTOMERID" jdbcType="INTEGER" property="CUSTOMERID" />
+    <result column="UNITNUM" jdbcType="INTEGER" property="UNITNUM" />
+    <result column="DISCARD" jdbcType="INTEGER" property="DISCARD" />
+    <result column="PRICE" jdbcType="REAL" property="PRICE" />
+    <result column="FLAG" jdbcType="INTEGER" property="FLAG" />
+    <result column="ISPAY" jdbcType="INTEGER" property="ISPAY" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <collection property="locationsetting" ofType="com.jkoss.pojo.LocationSetting" fetchType="eager"
+    	select="com.jkoss.dao.LocationSettingMapper.selectById" column="CARDID">
+    </collection>
+    <collection property="areainfo" ofType="com.jkoss.pojo.AreaInfo" fetchType="eager"
+    	select="com.jkoss.dao.AreaInfoMapper.selectById" column="AREAID">
+    </collection>
+    <collection property="cabinatsetting" ofType="com.jkoss.pojo.CabinatSetting" fetchType="eager"
+    	select="com.jkoss.dao.CabinatSettingMapper.selectById" column="CABINID">
+    </collection>
+    <collection property="customer" ofType="com.jkoss.pojo.Customer" fetchType="eager"
+    	select="com.jkoss.dao.CustomerMapper.selectById" column="CUSTOMERID">
+    </collection>
+    <collection property="fruitcategory" ofType="com.jkoss.pojo.FruitCategory" fetchType="eager"
+    	select="com.jkoss.dao.FruitCategoryMapper.selectById" column="FRUITCATEGORYID">
+    </collection>
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List">
+    ID, UNIT, AREAID, CARDID, CABINID, FRUITCATEGORYID, CUSTOMERID, UNITNUM, DISCARD, 
+    PRICE, FLAG, ISPAY, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pricesetting
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from pricesetting
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.PriceSetting">
+    insert into pricesetting (ID, UNIT, AREAID, 
+      CARDID, CABINID, FRUITCATEGORYID, 
+      CUSTOMERID, UNITNUM, DISCARD, 
+      PRICE, FLAG, ISPAY, REMARK
+      )
+    values (#{ID,jdbcType=INTEGER}, #{UNIT,jdbcType=INTEGER}, #{AREAID,jdbcType=INTEGER}, 
+      #{CARDID,jdbcType=INTEGER}, #{CABINID,jdbcType=INTEGER}, #{FRUITCATEGORYID,jdbcType=INTEGER}, 
+      #{CUSTOMERID,jdbcType=INTEGER}, #{UNITNUM,jdbcType=INTEGER}, #{DISCARD,jdbcType=INTEGER}, 
+      #{PRICE,jdbcType=REAL}, #{FLAG,jdbcType=INTEGER}, #{ISPAY,jdbcType=INTEGER}, #{REMARK,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.PriceSetting">
+    insert into pricesetting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="UNIT != null">
+        UNIT,
+      </if>
+      <if test="AREAID != null">
+        AREAID,
+      </if>
+      <if test="CARDID != null">
+        CARDID,
+      </if>
+      <if test="CABINID != null">
+        CABINID,
+      </if>
+      <if test="FRUITCATEGORYID != null">
+        FRUITCATEGORYID,
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID,
+      </if>
+      <if test="UNITNUM != null">
+        UNITNUM,
+      </if>
+      <if test="DISCARD != null">
+        DISCARD,
+      </if>
+      <if test="PRICE != null">
+        PRICE,
+      </if>
+      <if test="FLAG != null">
+        FLAG,
+      </if>
+      <if test="ISPAY != null">
+        ISPAY,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="UNIT != null">
+        #{UNIT,jdbcType=INTEGER},
+      </if>
+      <if test="AREAID != null">
+        #{AREAID,jdbcType=INTEGER},
+      </if>
+      <if test="CARDID != null">
+        #{CARDID,jdbcType=INTEGER},
+      </if>
+      <if test="CABINID != null">
+        #{CABINID,jdbcType=INTEGER},
+      </if>
+      <if test="FRUITCATEGORYID != null">
+        #{FRUITCATEGORYID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="UNITNUM != null">
+        #{UNITNUM,jdbcType=INTEGER},
+      </if>
+      <if test="DISCARD != null">
+        #{DISCARD,jdbcType=INTEGER},
+      </if>
+      <if test="PRICE != null">
+        #{PRICE,jdbcType=REAL},
+      </if>
+      <if test="FLAG != null">
+        #{FLAG,jdbcType=INTEGER},
+      </if>
+      <if test="ISPAY != null">
+        #{ISPAY,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.PriceSetting">
+    update pricesetting
+    <set>
+      <if test="UNIT != null">
+        UNIT = #{UNIT,jdbcType=INTEGER},
+      </if>
+      <if test="AREAID != null">
+        AREAID = #{AREAID,jdbcType=INTEGER},
+      </if>
+      <if test="CARDID != null">
+        CARDID = #{CARDID,jdbcType=INTEGER},
+      </if>
+      <if test="CABINID != null">
+        CABINID = #{CABINID,jdbcType=INTEGER},
+      </if>
+      <if test="FRUITCATEGORYID != null">
+        FRUITCATEGORYID = #{FRUITCATEGORYID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="UNITNUM != null">
+        UNITNUM = #{UNITNUM,jdbcType=INTEGER},
+      </if>
+      <if test="DISCARD != null">
+        DISCARD = #{DISCARD,jdbcType=INTEGER},
+      </if>
+      <if test="PRICE != null">
+        PRICE = #{PRICE,jdbcType=REAL},
+      </if>
+      <if test="FLAG != null">
+        FLAG = #{FLAG,jdbcType=INTEGER},
+      </if>
+      <if test="ISPAY != null">
+        ISPAY = #{ISPAY,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.PriceSetting">
+    update pricesetting
+    set UNIT = #{UNIT,jdbcType=INTEGER},
+      AREAID = #{AREAID,jdbcType=INTEGER},
+      CARDID = #{CARDID,jdbcType=INTEGER},
+      CABINID = #{CABINID,jdbcType=INTEGER},
+      FRUITCATEGORYID = #{FRUITCATEGORYID,jdbcType=INTEGER},
+      CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      UNITNUM = #{UNITNUM,jdbcType=INTEGER},
+      DISCARD = #{DISCARD,jdbcType=INTEGER},
+      PRICE = #{PRICE,jdbcType=REAL},
+      FLAG = #{FLAG,jdbcType=INTEGER},
+      ISPAY = #{ISPAY,jdbcType=INTEGER},
+      REMARK = #{REMARK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectLikeByName" resultType="com.jkoss.pojo.Acclf">
+  	select a.AREANAME,l.CARDNAME, cab.CABINATENAME,cus.CUSTOMERNAME,f.CATENAME,p.UNIT,p.UNITNUM,p.DISCARD,p.ISPAY,p.FLAG,p.REMARK
+	from pricesetting p,areainfo a,cabinatsetting cab,customer cus,locationsetting l,fruitcategory f
+	where p.AREAID=a.ID and p.CABINID=cab.ID and p.CUSTOMERID=cus.ID and p.CARDID=l.ID and p.FRUITCATEGORYID=f.ID
+	and cus.CUSTOMERNAME like concat(#{cusname},'%')
+  </select>
+  
+</mapper>

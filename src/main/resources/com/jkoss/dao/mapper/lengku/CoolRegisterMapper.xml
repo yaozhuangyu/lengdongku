@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.CoolRegisterMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.CoolRegister">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="CABINETNO" jdbcType="VARCHAR" property="CABINETNO" />
+    <result column="CUSTOMERID" jdbcType="INTEGER" property="CUSTOMERID" />
+    <result column="FRUITCATEGERY" jdbcType="VARCHAR" property="FRUITCATEGERY" />
+    <result column="BEGINTIME" jdbcType="TIMESTAMP" property="BEGINTIME" />
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="ENDTIME" />
+    <result column="TEMPRATURE" jdbcType="REAL" property="TEMPRATURE" />
+    <result column="CABINETLOC" jdbcType="VARCHAR" property="CABINETLOC" />
+    <result column="OPERATER" jdbcType="INTEGER" property="OPERATER" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="MOBILE" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="REGISTERTIME" jdbcType="TIMESTAMP" property="REGISTERTIME" />
+    <result column="COOLTYPE" jdbcType="INTEGER" property="COOLTYPE" />
+    <result column="MONEY" jdbcType="REAL" property="MONEY" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+    <result column="PAYTYPE" jdbcType="INTEGER" property="PAYTYPE" />
+    <result column="CUSTOMERNAME" jdbcType="VARCHAR" property="CUSTOMERNAME" />
+    <result column="STOPTIME" jdbcType="TIMESTAMP" property="STOPTIME" />
+    <result column="PAYDATETIME" jdbcType="TIMESTAMP" property="PAYDATETIME" />
+    <result column="REGISTERID" jdbcType="INTEGER" property="REGISTERID" />
+    <result column="AREANUM" jdbcType="INTEGER" property="AREANUM" />
+    <result column="CARDNUM" jdbcType="INTEGER" property="CARDNUM" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CABINETNO, CUSTOMERID, FRUITCATEGERY, BEGINTIME, ENDTIME, TEMPRATURE, CABINETLOC, 
+    OPERATER, MOBILE, REMARK, REGISTERTIME, COOLTYPE, MONEY, STATE, PAYTYPE, CUSTOMERNAME, 
+    STOPTIME, PAYDATETIME, REGISTERID, AREANUM, CARDNUM
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coolregister
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coolregister
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.CoolRegister">
+    insert into coolregister (ID, CABINETNO, CUSTOMERID, 
+      FRUITCATEGERY, BEGINTIME, ENDTIME, 
+      TEMPRATURE, CABINETLOC, OPERATER, 
+      MOBILE, REMARK, REGISTERTIME, 
+      COOLTYPE, MONEY, STATE, 
+      PAYTYPE, CUSTOMERNAME, STOPTIME, 
+      PAYDATETIME, REGISTERID, AREANUM, 
+      CARDNUM)
+    values (#{ID,jdbcType=INTEGER}, #{CABINETNO,jdbcType=VARCHAR}, #{CUSTOMERID,jdbcType=INTEGER}, 
+      #{FRUITCATEGERY,jdbcType=VARCHAR}, #{BEGINTIME,jdbcType=TIMESTAMP}, #{ENDTIME,jdbcType=TIMESTAMP}, 
+      #{TEMPRATURE,jdbcType=REAL}, #{CABINETLOC,jdbcType=VARCHAR}, #{OPERATER,jdbcType=INTEGER}, 
+      #{MOBILE,jdbcType=VARCHAR}, #{REMARK,jdbcType=VARCHAR}, #{REGISTERTIME,jdbcType=TIMESTAMP}, 
+      #{COOLTYPE,jdbcType=INTEGER}, #{MONEY,jdbcType=REAL}, #{STATE,jdbcType=INTEGER}, 
+      #{PAYTYPE,jdbcType=INTEGER}, #{CUSTOMERNAME,jdbcType=VARCHAR}, #{STOPTIME,jdbcType=TIMESTAMP}, 
+      #{PAYDATETIME,jdbcType=TIMESTAMP}, #{REGISTERID,jdbcType=INTEGER}, #{AREANUM,jdbcType=INTEGER}, 
+      #{CARDNUM,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.CoolRegister">
+    insert into coolregister
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="CABINETNO != null">
+        CABINETNO,
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID,
+      </if>
+      <if test="FRUITCATEGERY != null">
+        FRUITCATEGERY,
+      </if>
+      <if test="BEGINTIME != null">
+        BEGINTIME,
+      </if>
+      <if test="ENDTIME != null">
+        ENDTIME,
+      </if>
+      <if test="TEMPRATURE != null">
+        TEMPRATURE,
+      </if>
+      <if test="CABINETLOC != null">
+        CABINETLOC,
+      </if>
+      <if test="OPERATER != null">
+        OPERATER,
+      </if>
+      <if test="MOBILE != null">
+        MOBILE,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="REGISTERTIME != null">
+        REGISTERTIME,
+      </if>
+      <if test="COOLTYPE != null">
+        COOLTYPE,
+      </if>
+      <if test="MONEY != null">
+        MONEY,
+      </if>
+      <if test="STATE != null">
+        STATE,
+      </if>
+      <if test="PAYTYPE != null">
+        PAYTYPE,
+      </if>
+      <if test="CUSTOMERNAME != null">
+        CUSTOMERNAME,
+      </if>
+      <if test="STOPTIME != null">
+        STOPTIME,
+      </if>
+      <if test="PAYDATETIME != null">
+        PAYDATETIME,
+      </if>
+      <if test="REGISTERID != null">
+        REGISTERID,
+      </if>
+      <if test="AREANUM != null">
+        AREANUM,
+      </if>
+      <if test="CARDNUM != null">
+        CARDNUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="CABINETNO != null">
+        #{CABINETNO,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMERID != null">
+        #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="FRUITCATEGERY != null">
+        #{FRUITCATEGERY,jdbcType=VARCHAR},
+      </if>
+      <if test="BEGINTIME != null">
+        #{BEGINTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ENDTIME != null">
+        #{ENDTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="TEMPRATURE != null">
+        #{TEMPRATURE,jdbcType=REAL},
+      </if>
+      <if test="CABINETLOC != null">
+        #{CABINETLOC,jdbcType=VARCHAR},
+      </if>
+      <if test="OPERATER != null">
+        #{OPERATER,jdbcType=INTEGER},
+      </if>
+      <if test="MOBILE != null">
+        #{MOBILE,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="REGISTERTIME != null">
+        #{REGISTERTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="COOLTYPE != null">
+        #{COOLTYPE,jdbcType=INTEGER},
+      </if>
+      <if test="MONEY != null">
+        #{MONEY,jdbcType=REAL},
+      </if>
+      <if test="STATE != null">
+        #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="PAYTYPE != null">
+        #{PAYTYPE,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERNAME != null">
+        #{CUSTOMERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="STOPTIME != null">
+        #{STOPTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="PAYDATETIME != null">
+        #{PAYDATETIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="REGISTERID != null">
+        #{REGISTERID,jdbcType=INTEGER},
+      </if>
+      <if test="AREANUM != null">
+        #{AREANUM,jdbcType=INTEGER},
+      </if>
+      <if test="CARDNUM != null">
+        #{CARDNUM,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.CoolRegister">
+    update coolregister
+    <set>
+      <if test="CABINETNO != null">
+        CABINETNO = #{CABINETNO,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      </if>
+      <if test="FRUITCATEGERY != null">
+        FRUITCATEGERY = #{FRUITCATEGERY,jdbcType=VARCHAR},
+      </if>
+      <if test="BEGINTIME != null">
+        BEGINTIME = #{BEGINTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ENDTIME != null">
+        ENDTIME = #{ENDTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="TEMPRATURE != null">
+        TEMPRATURE = #{TEMPRATURE,jdbcType=REAL},
+      </if>
+      <if test="CABINETLOC != null">
+        CABINETLOC = #{CABINETLOC,jdbcType=VARCHAR},
+      </if>
+      <if test="OPERATER != null">
+        OPERATER = #{OPERATER,jdbcType=INTEGER},
+      </if>
+      <if test="MOBILE != null">
+        MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="REGISTERTIME != null">
+        REGISTERTIME = #{REGISTERTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="COOLTYPE != null">
+        COOLTYPE = #{COOLTYPE,jdbcType=INTEGER},
+      </if>
+      <if test="MONEY != null">
+        MONEY = #{MONEY,jdbcType=REAL},
+      </if>
+      <if test="STATE != null">
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="PAYTYPE != null">
+        PAYTYPE = #{PAYTYPE,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERNAME != null">
+        CUSTOMERNAME = #{CUSTOMERNAME,jdbcType=VARCHAR},
+      </if>
+      <if test="STOPTIME != null">
+        STOPTIME = #{STOPTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="PAYDATETIME != null">
+        PAYDATETIME = #{PAYDATETIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="REGISTERID != null">
+        REGISTERID = #{REGISTERID,jdbcType=INTEGER},
+      </if>
+      <if test="AREANUM != null">
+        AREANUM = #{AREANUM,jdbcType=INTEGER},
+      </if>
+      <if test="CARDNUM != null">
+        CARDNUM = #{CARDNUM,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updtcool" parameterType="com.jkoss.pojo.CoolRegister">
+    update coolregister
+    set CABINETNO = #{CABINETNO,jdbcType=VARCHAR},
+      CUSTOMERID = #{CUSTOMERID,jdbcType=INTEGER},
+      FRUITCATEGERY = #{FRUITCATEGERY,jdbcType=VARCHAR},
+      BEGINTIME = #{BEGINTIME,jdbcType=TIMESTAMP},
+      ENDTIME = #{ENDTIME,jdbcType=TIMESTAMP},
+      TEMPRATURE = #{TEMPRATURE,jdbcType=REAL},
+      CABINETLOC = #{CABINETLOC,jdbcType=VARCHAR},
+      OPERATER = #{OPERATER,jdbcType=INTEGER},
+      MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      REGISTERTIME = #{REGISTERTIME,jdbcType=TIMESTAMP},
+      COOLTYPE = #{COOLTYPE,jdbcType=INTEGER},
+      MONEY = #{MONEY,jdbcType=REAL},
+      STATE = #{STATE,jdbcType=INTEGER},
+      PAYTYPE = #{PAYTYPE,jdbcType=INTEGER},
+      CUSTOMERNAME = #{CUSTOMERNAME,jdbcType=VARCHAR},
+      STOPTIME = #{STOPTIME,jdbcType=TIMESTAMP},
+      PAYDATETIME = #{PAYDATETIME,jdbcType=TIMESTAMP},
+      REGISTERID = #{REGISTERID,jdbcType=INTEGER},
+      AREANUM = #{AREANUM,jdbcType=INTEGER},
+      CARDNUM = #{CARDNUM,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

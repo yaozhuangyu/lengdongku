@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.UserInfo">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="EMPNO" jdbcType="VARCHAR" property="EMPNO" />
+    <result column="NAME" jdbcType="VARCHAR" property="NAME" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="PASSWORD" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="ACCOUNT" />
+    <result column="TELEPHONE" jdbcType="VARCHAR" property="TELEPHONE" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="MOBILE" />
+    <result column="EMAIL" jdbcType="VARCHAR" property="EMAIL" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+    <result column="IDENTITILY" jdbcType="VARCHAR" property="IDENTITILY" />
+    <result column="DEPTNO" jdbcType="INTEGER" property="DEPTNO" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="ADDRESS" />
+    <result column="SCHOOL" jdbcType="VARCHAR" property="SCHOOL" />
+    <result column="EDUCATION" jdbcType="INTEGER" property="EDUCATION" />
+    <result column="AFTERSCHOOL" jdbcType="DATE" property="AFTERSCHOOL" />
+    <result column="INTIME" jdbcType="DATE" property="INTIME" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="REBACK" jdbcType="VARCHAR" property="REBACK" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, EMPNO, NAME, PASSWORD, ACCOUNT, TELEPHONE, MOBILE, EMAIL, STATE, IDENTITILY, 
+    DEPTNO, ADDRESS, SCHOOL, EDUCATION, AFTERSCHOOL, INTIME, REMARK, REBACK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from userinfo
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.UserInfo">
+    insert into userinfo (ID, EMPNO, NAME, 
+      PASSWORD, ACCOUNT, TELEPHONE, 
+      MOBILE, EMAIL, STATE, 
+      IDENTITILY, DEPTNO, ADDRESS, 
+      SCHOOL, EDUCATION, AFTERSCHOOL, 
+      INTIME, REMARK, REBACK
+      )
+    values (#{ID,jdbcType=INTEGER}, #{EMPNO,jdbcType=VARCHAR}, #{NAME,jdbcType=VARCHAR}, 
+      #{PASSWORD,jdbcType=VARCHAR}, #{ACCOUNT,jdbcType=VARCHAR}, #{TELEPHONE,jdbcType=VARCHAR}, 
+      #{MOBILE,jdbcType=VARCHAR}, #{EMAIL,jdbcType=VARCHAR}, #{STATE,jdbcType=INTEGER}, 
+      #{IDENTITILY,jdbcType=VARCHAR}, #{DEPTNO,jdbcType=INTEGER}, #{ADDRESS,jdbcType=VARCHAR}, 
+      #{SCHOOL,jdbcType=VARCHAR}, #{EDUCATION,jdbcType=INTEGER}, #{AFTERSCHOOL,jdbcType=DATE}, 
+      #{INTIME,jdbcType=DATE}, #{REMARK,jdbcType=VARCHAR}, #{REBACK,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.UserInfo">
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="EMPNO != null">
+        EMPNO,
+      </if>
+      <if test="NAME != null">
+        NAME,
+      </if>
+      <if test="PASSWORD != null">
+        PASSWORD,
+      </if>
+      <if test="ACCOUNT != null">
+        ACCOUNT,
+      </if>
+      <if test="TELEPHONE != null">
+        TELEPHONE,
+      </if>
+      <if test="MOBILE != null">
+        MOBILE,
+      </if>
+      <if test="EMAIL != null">
+        EMAIL,
+      </if>
+      <if test="STATE != null">
+        STATE,
+      </if>
+      <if test="IDENTITILY != null">
+        IDENTITILY,
+      </if>
+      <if test="DEPTNO != null">
+        DEPTNO,
+      </if>
+      <if test="ADDRESS != null">
+        ADDRESS,
+      </if>
+      <if test="SCHOOL != null">
+        SCHOOL,
+      </if>
+      <if test="EDUCATION != null">
+        EDUCATION,
+      </if>
+      <if test="AFTERSCHOOL != null">
+        AFTERSCHOOL,
+      </if>
+      <if test="INTIME != null">
+        INTIME,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="REBACK != null">
+        REBACK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="EMPNO != null">
+        #{EMPNO,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PASSWORD != null">
+        #{PASSWORD,jdbcType=VARCHAR},
+      </if>
+      <if test="ACCOUNT != null">
+        #{ACCOUNT,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null">
+        #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="MOBILE != null">
+        #{MOBILE,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null">
+        #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="STATE != null">
+        #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="IDENTITILY != null">
+        #{IDENTITILY,jdbcType=VARCHAR},
+      </if>
+      <if test="DEPTNO != null">
+        #{DEPTNO,jdbcType=INTEGER},
+      </if>
+      <if test="ADDRESS != null">
+        #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="SCHOOL != null">
+        #{SCHOOL,jdbcType=VARCHAR},
+      </if>
+      <if test="EDUCATION != null">
+        #{EDUCATION,jdbcType=INTEGER},
+      </if>
+      <if test="AFTERSCHOOL != null">
+        #{AFTERSCHOOL,jdbcType=DATE},
+      </if>
+      <if test="INTIME != null">
+        #{INTIME,jdbcType=DATE},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="REBACK != null">
+        #{REBACK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.UserInfo">
+    update userinfo
+    <set>
+      <if test="EMPNO != null">
+        EMPNO = #{EMPNO,jdbcType=VARCHAR},
+      </if>
+      <if test="NAME != null">
+        NAME = #{NAME,jdbcType=VARCHAR},
+      </if>
+      <if test="PASSWORD != null">
+        PASSWORD = #{PASSWORD,jdbcType=VARCHAR},
+      </if>
+      <if test="ACCOUNT != null">
+        ACCOUNT = #{ACCOUNT,jdbcType=VARCHAR},
+      </if>
+      <if test="TELEPHONE != null">
+        TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      </if>
+      <if test="MOBILE != null">
+        MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      </if>
+      <if test="EMAIL != null">
+        EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      </if>
+      <if test="STATE != null">
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="IDENTITILY != null">
+        IDENTITILY = #{IDENTITILY,jdbcType=VARCHAR},
+      </if>
+      <if test="DEPTNO != null">
+        DEPTNO = #{DEPTNO,jdbcType=INTEGER},
+      </if>
+      <if test="ADDRESS != null">
+        ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      </if>
+      <if test="SCHOOL != null">
+        SCHOOL = #{SCHOOL,jdbcType=VARCHAR},
+      </if>
+      <if test="EDUCATION != null">
+        EDUCATION = #{EDUCATION,jdbcType=INTEGER},
+      </if>
+      <if test="AFTERSCHOOL != null">
+        AFTERSCHOOL = #{AFTERSCHOOL,jdbcType=DATE},
+      </if>
+      <if test="INTIME != null">
+        INTIME = #{INTIME,jdbcType=DATE},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="REBACK != null">
+        REBACK = #{REBACK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.UserInfo">
+    update userinfo
+    set EMPNO = #{EMPNO,jdbcType=VARCHAR},
+      NAME = #{NAME,jdbcType=VARCHAR},
+      PASSWORD = #{PASSWORD,jdbcType=VARCHAR},
+      ACCOUNT = #{ACCOUNT,jdbcType=VARCHAR},
+      TELEPHONE = #{TELEPHONE,jdbcType=VARCHAR},
+      MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      EMAIL = #{EMAIL,jdbcType=VARCHAR},
+      STATE = #{STATE,jdbcType=INTEGER},
+      IDENTITILY = #{IDENTITILY,jdbcType=VARCHAR},
+      DEPTNO = #{DEPTNO,jdbcType=INTEGER},
+      ADDRESS = #{ADDRESS,jdbcType=VARCHAR},
+      SCHOOL = #{SCHOOL,jdbcType=VARCHAR},
+      EDUCATION = #{EDUCATION,jdbcType=INTEGER},
+      AFTERSCHOOL = #{AFTERSCHOOL,jdbcType=DATE},
+      INTIME = #{INTIME,jdbcType=DATE},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      REBACK = #{REBACK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

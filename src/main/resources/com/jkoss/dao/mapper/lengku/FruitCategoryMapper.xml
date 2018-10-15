@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.FruitCategoryMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.FruitCategory">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="PARENTID" jdbcType="INTEGER" property="PARENTID" />
+    <result column="CATENAME" jdbcType="VARCHAR" property="CATENAME" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, PARENTID, CATENAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fruitcategory
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from fruitcategory
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.FruitCategory">
+    insert into fruitcategory (ID, PARENTID, CATENAME
+      )
+    values (#{ID,jdbcType=INTEGER}, #{PARENTID,jdbcType=INTEGER}, #{CATENAME,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.FruitCategory">
+    insert into fruitcategory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="PARENTID != null">
+        PARENTID,
+      </if>
+      <if test="CATENAME != null">
+        CATENAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="PARENTID != null">
+        #{PARENTID,jdbcType=INTEGER},
+      </if>
+      <if test="CATENAME != null">
+        #{CATENAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.FruitCategory">
+    update fruitcategory
+    <set>
+      <if test="PARENTID != null">
+        PARENTID = #{PARENTID,jdbcType=INTEGER},
+      </if>
+      <if test="CATENAME != null">
+        CATENAME = #{CATENAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.FruitCategory">
+    update fruitcategory
+    set PARENTID = #{PARENTID,jdbcType=INTEGER},
+      CATENAME = #{CATENAME,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

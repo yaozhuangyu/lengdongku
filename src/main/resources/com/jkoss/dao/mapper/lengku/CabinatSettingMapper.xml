@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.CabinatSettingMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.CabinatSetting">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="CARDID" jdbcType="INTEGER" property="CARDID" />
+    <result column="SERIALNO" jdbcType="VARCHAR" property="SERIALNO" />
+    <result column="LOCATION" jdbcType="VARCHAR" property="LOCATION" />
+    <result column="CABINATENAME" jdbcType="VARCHAR" property="CABINATENAME" />
+    <result column="CAPACITY" jdbcType="INTEGER" property="CAPACITY" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, CARDID, SERIALNO, LOCATION, CABINATENAME, CAPACITY, STATE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cabinatsetting
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cabinatsetting
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.CabinatSetting">
+    insert into cabinatsetting (ID, CARDID, SERIALNO, 
+      LOCATION, CABINATENAME, CAPACITY, 
+      STATE)
+    values (#{ID,jdbcType=INTEGER}, #{CARDID,jdbcType=INTEGER}, #{SERIALNO,jdbcType=VARCHAR}, 
+      #{LOCATION,jdbcType=VARCHAR}, #{CABINATENAME,jdbcType=VARCHAR}, #{CAPACITY,jdbcType=INTEGER}, 
+      #{STATE,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.CabinatSetting">
+    insert into cabinatsetting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="CARDID != null">
+        CARDID,
+      </if>
+      <if test="SERIALNO != null">
+        SERIALNO,
+      </if>
+      <if test="LOCATION != null">
+        LOCATION,
+      </if>
+      <if test="CABINATENAME != null">
+        CABINATENAME,
+      </if>
+      <if test="CAPACITY != null">
+        CAPACITY,
+      </if>
+      <if test="STATE != null">
+        STATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="CARDID != null">
+        #{CARDID,jdbcType=INTEGER},
+      </if>
+      <if test="SERIALNO != null">
+        #{SERIALNO,jdbcType=VARCHAR},
+      </if>
+      <if test="LOCATION != null">
+        #{LOCATION,jdbcType=VARCHAR},
+      </if>
+      <if test="CABINATENAME != null">
+        #{CABINATENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="CAPACITY != null">
+        #{CAPACITY,jdbcType=INTEGER},
+      </if>
+      <if test="STATE != null">
+        #{STATE,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.CabinatSetting">
+    update cabinatsetting
+    <set>
+      <if test="CARDID != null">
+        CARDID = #{CARDID,jdbcType=INTEGER},
+      </if>
+      <if test="SERIALNO != null">
+        SERIALNO = #{SERIALNO,jdbcType=VARCHAR},
+      </if>
+      <if test="LOCATION != null">
+        LOCATION = #{LOCATION,jdbcType=VARCHAR},
+      </if>
+      <if test="CABINATENAME != null">
+        CABINATENAME = #{CABINATENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="CAPACITY != null">
+        CAPACITY = #{CAPACITY,jdbcType=INTEGER},
+      </if>
+      <if test="STATE != null">
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.CabinatSetting">
+    update cabinatsetting
+    set CARDID = #{CARDID,jdbcType=INTEGER},
+      SERIALNO = #{SERIALNO,jdbcType=VARCHAR},
+      LOCATION = #{LOCATION,jdbcType=VARCHAR},
+      CABINATENAME = #{CABINATENAME,jdbcType=VARCHAR},
+      CAPACITY = #{CAPACITY,jdbcType=INTEGER},
+      STATE = #{STATE,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updtcab" parameterType="com.jkoss.pojo.CabinatSetting">
+    update cabinatsetting
+    set
+      SERIALNO = #{SERIALNO,jdbcType=VARCHAR},
+      LOCATION = #{LOCATION,jdbcType=VARCHAR},
+      CABINATENAME = #{CABINATENAME,jdbcType=VARCHAR},
+      CAPACITY = #{CAPACITY,jdbcType=INTEGER},
+      STATE = #{STATE,jdbcType=INTEGER}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jkoss.dao.SysRightMapper" >
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.SysRight" >
+    <id column="right_id" property="right_id" jdbcType="INTEGER" />
+    <result column="rightName" property="rightName" jdbcType="VARCHAR" />
+    <result column="rightURL" property="rightURL" jdbcType="VARCHAR" />
+    <result column="rfloor" property="rfloor" jdbcType="INTEGER" />
+    <result column="parentid" property="parentid" jdbcType="INTEGER" />
+    <result column="rownum" property="rownum" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    right_id, rightName, rightURL, rfloor, parentid, rownum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from right
+    where right_id = #{right_id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from right
+    where right_id = #{right_id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.SysRight" >
+    insert into right (right_id, rightName, rightURL, 
+      rfloor, parentid, rownum
+      )
+    values (#{right_id,jdbcType=INTEGER}, #{rightName,jdbcType=VARCHAR}, #{rightURL,jdbcType=VARCHAR}, 
+      #{rfloor,jdbcType=INTEGER}, #{parentid,jdbcType=INTEGER}, #{rownum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.SysRight" >
+    insert into right
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="right_id != null" >
+        right_id,
+      </if>
+      <if test="rightName != null" >
+        rightName,
+      </if>
+      <if test="rightURL != null" >
+        rightURL,
+      </if>
+      <if test="rfloor != null" >
+        rfloor,
+      </if>
+      <if test="parentid != null" >
+        parentid,
+      </if>
+      <if test="rownum != null" >
+        rownum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="right_id != null" >
+        #{right_id,jdbcType=INTEGER},
+      </if>
+      <if test="rightName != null" >
+        #{rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightURL != null" >
+        #{rightURL,jdbcType=VARCHAR},
+      </if>
+      <if test="rfloor != null" >
+        #{rfloor,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="rownum != null" >
+        #{rownum,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.SysRight" >
+    update right
+    <set >
+      <if test="rightName != null" >
+        rightName = #{rightName,jdbcType=VARCHAR},
+      </if>
+      <if test="rightURL != null" >
+        rightURL = #{rightURL,jdbcType=VARCHAR},
+      </if>
+      <if test="rfloor != null" >
+        rfloor = #{rfloor,jdbcType=INTEGER},
+      </if>
+      <if test="parentid != null" >
+        parentid = #{parentid,jdbcType=INTEGER},
+      </if>
+      <if test="rownum != null" >
+        rownum = #{rownum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where right_id = #{right_id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.SysRight" >
+    update right
+    set rightName = #{rightName,jdbcType=VARCHAR},
+      rightURL = #{rightURL,jdbcType=VARCHAR},
+      rfloor = #{rfloor,jdbcType=INTEGER},
+      parentid = #{parentid,jdbcType=INTEGER},
+      rownum = #{rownum,jdbcType=INTEGER}
+    where right_id = #{right_id,jdbcType=INTEGER}
+  </update>
+</mapper>

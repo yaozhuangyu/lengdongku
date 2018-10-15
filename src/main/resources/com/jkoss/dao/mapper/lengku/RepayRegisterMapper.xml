@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.RepayRegisterMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.RepayRegister">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="REGID" jdbcType="INTEGER" property="REGID" />
+    <result column="CUSTOMERID" jdbcType="VARCHAR" property="CUSTOMERID" />
+    <result column="BEGINTIME" jdbcType="TIMESTAMP" property="BEGINTIME" />
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="ENDTIME" />
+    <result column="STOPTIME" jdbcType="TIMESTAMP" property="STOPTIME" />
+    <result column="STATE" jdbcType="INTEGER" property="STATE" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="REPAYHOURS" jdbcType="REAL" property="REPAYHOURS" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, REGID, CUSTOMERID, BEGINTIME, ENDTIME, STOPTIME, STATE, REMARK, REPAYHOURS
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from repayregister
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from repayregister
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.RepayRegister">
+    insert into repayregister (ID, REGID, CUSTOMERID, 
+      BEGINTIME, ENDTIME, STOPTIME, 
+      STATE, REMARK, REPAYHOURS
+      )
+    values (#{ID,jdbcType=INTEGER}, #{REGID,jdbcType=INTEGER}, #{CUSTOMERID,jdbcType=VARCHAR}, 
+      #{BEGINTIME,jdbcType=TIMESTAMP}, #{ENDTIME,jdbcType=TIMESTAMP}, #{STOPTIME,jdbcType=TIMESTAMP}, 
+      #{STATE,jdbcType=INTEGER}, #{REMARK,jdbcType=VARCHAR}, #{REPAYHOURS,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.RepayRegister">
+    insert into repayregister
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="REGID != null">
+        REGID,
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID,
+      </if>
+      <if test="BEGINTIME != null">
+        BEGINTIME,
+      </if>
+      <if test="ENDTIME != null">
+        ENDTIME,
+      </if>
+      <if test="STOPTIME != null">
+        STOPTIME,
+      </if>
+      <if test="STATE != null">
+        STATE,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="REPAYHOURS != null">
+        REPAYHOURS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="REGID != null">
+        #{REGID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        #{CUSTOMERID,jdbcType=VARCHAR},
+      </if>
+      <if test="BEGINTIME != null">
+        #{BEGINTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ENDTIME != null">
+        #{ENDTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="STOPTIME != null">
+        #{STOPTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="STATE != null">
+        #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="REPAYHOURS != null">
+        #{REPAYHOURS,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.RepayRegister">
+    update repayregister
+    <set>
+      <if test="REGID != null">
+        REGID = #{REGID,jdbcType=INTEGER},
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID = #{CUSTOMERID,jdbcType=VARCHAR},
+      </if>
+      <if test="BEGINTIME != null">
+        BEGINTIME = #{BEGINTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ENDTIME != null">
+        ENDTIME = #{ENDTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="STOPTIME != null">
+        STOPTIME = #{STOPTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="STATE != null">
+        STATE = #{STATE,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="REPAYHOURS != null">
+        REPAYHOURS = #{REPAYHOURS,jdbcType=REAL},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.RepayRegister">
+    update repayregister
+    set REGID = #{REGID,jdbcType=INTEGER},
+      CUSTOMERID = #{CUSTOMERID,jdbcType=VARCHAR},
+      BEGINTIME = #{BEGINTIME,jdbcType=TIMESTAMP},
+      ENDTIME = #{ENDTIME,jdbcType=TIMESTAMP},
+      STOPTIME = #{STOPTIME,jdbcType=TIMESTAMP},
+      STATE = #{STATE,jdbcType=INTEGER},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      REPAYHOURS = #{REPAYHOURS,jdbcType=REAL}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

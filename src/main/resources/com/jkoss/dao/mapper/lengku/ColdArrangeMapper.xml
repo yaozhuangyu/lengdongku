@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.ColdArrangeMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.ColdArrange">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="REGID" jdbcType="INTEGER" property="REGID" />
+    <result column="CABINETNO" jdbcType="VARCHAR" property="CABINETNO" />
+    <result column="CUSTOMERID" jdbcType="VARCHAR" property="CUSTOMERID" />
+    <result column="FRUITCATEGERY" jdbcType="VARCHAR" property="FRUITCATEGERY" />
+    <result column="BEGINTIME" jdbcType="TIMESTAMP" property="BEGINTIME" />
+    <result column="ENDTIME" jdbcType="TIMESTAMP" property="ENDTIME" />
+    <result column="TEMPRATURE" jdbcType="REAL" property="TEMPRATURE" />
+    <result column="CABINETLOC" jdbcType="VARCHAR" property="CABINETLOC" />
+    <result column="OPERATER" jdbcType="INTEGER" property="OPERATER" />
+    <result column="OPERATETIME" jdbcType="TIMESTAMP" property="OPERATETIME" />
+    <result column="MOBILE" jdbcType="VARCHAR" property="MOBILE" />
+    <result column="COLDOPERATOR" jdbcType="INTEGER" property="COLDOPERATOR" />
+    <result column="STOPCOLDOPERATOR" jdbcType="INTEGER" property="STOPCOLDOPERATOR" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+    <result column="CUSTOMERNAME" jdbcType="VARCHAR" property="CUSTOMERNAME" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, REGID, CABINETNO, CUSTOMERID, FRUITCATEGERY, BEGINTIME, ENDTIME, TEMPRATURE, 
+    CABINETLOC, OPERATER, OPERATETIME, MOBILE, COLDOPERATOR, STOPCOLDOPERATOR, REMARK, 
+    CUSTOMERNAME
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from coldarrange
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from coldarrange
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.ColdArrange">
+    insert into coldarrange (ID, REGID, CABINETNO, 
+      CUSTOMERID, FRUITCATEGERY, BEGINTIME, 
+      ENDTIME, TEMPRATURE, CABINETLOC, 
+      OPERATER, OPERATETIME, MOBILE, 
+      COLDOPERATOR, STOPCOLDOPERATOR, REMARK, 
+      CUSTOMERNAME)
+    values (#{ID,jdbcType=INTEGER}, #{REGID,jdbcType=INTEGER}, #{CABINETNO,jdbcType=VARCHAR}, 
+      #{CUSTOMERID,jdbcType=VARCHAR}, #{FRUITCATEGERY,jdbcType=VARCHAR}, #{BEGINTIME,jdbcType=TIMESTAMP}, 
+      #{ENDTIME,jdbcType=TIMESTAMP}, #{TEMPRATURE,jdbcType=REAL}, #{CABINETLOC,jdbcType=VARCHAR}, 
+      #{OPERATER,jdbcType=INTEGER}, #{OPERATETIME,jdbcType=TIMESTAMP}, #{MOBILE,jdbcType=VARCHAR}, 
+      #{COLDOPERATOR,jdbcType=INTEGER}, #{STOPCOLDOPERATOR,jdbcType=INTEGER}, #{REMARK,jdbcType=VARCHAR}, 
+      #{CUSTOMERNAME,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.ColdArrange">
+    insert into coldarrange
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="REGID != null">
+        REGID,
+      </if>
+      <if test="CABINETNO != null">
+        CABINETNO,
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID,
+      </if>
+      <if test="FRUITCATEGERY != null">
+        FRUITCATEGERY,
+      </if>
+      <if test="BEGINTIME != null">
+        BEGINTIME,
+      </if>
+      <if test="ENDTIME != null">
+        ENDTIME,
+      </if>
+      <if test="TEMPRATURE != null">
+        TEMPRATURE,
+      </if>
+      <if test="CABINETLOC != null">
+        CABINETLOC,
+      </if>
+      <if test="OPERATER != null">
+        OPERATER,
+      </if>
+      <if test="OPERATETIME != null">
+        OPERATETIME,
+      </if>
+      <if test="MOBILE != null">
+        MOBILE,
+      </if>
+      <if test="COLDOPERATOR != null">
+        COLDOPERATOR,
+      </if>
+      <if test="STOPCOLDOPERATOR != null">
+        STOPCOLDOPERATOR,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+      <if test="CUSTOMERNAME != null">
+        CUSTOMERNAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="REGID != null">
+        #{REGID,jdbcType=INTEGER},
+      </if>
+      <if test="CABINETNO != null">
+        #{CABINETNO,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMERID != null">
+        #{CUSTOMERID,jdbcType=VARCHAR},
+      </if>
+      <if test="FRUITCATEGERY != null">
+        #{FRUITCATEGERY,jdbcType=VARCHAR},
+      </if>
+      <if test="BEGINTIME != null">
+        #{BEGINTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ENDTIME != null">
+        #{ENDTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="TEMPRATURE != null">
+        #{TEMPRATURE,jdbcType=REAL},
+      </if>
+      <if test="CABINETLOC != null">
+        #{CABINETLOC,jdbcType=VARCHAR},
+      </if>
+      <if test="OPERATER != null">
+        #{OPERATER,jdbcType=INTEGER},
+      </if>
+      <if test="OPERATETIME != null">
+        #{OPERATETIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="MOBILE != null">
+        #{MOBILE,jdbcType=VARCHAR},
+      </if>
+      <if test="COLDOPERATOR != null">
+        #{COLDOPERATOR,jdbcType=INTEGER},
+      </if>
+      <if test="STOPCOLDOPERATOR != null">
+        #{STOPCOLDOPERATOR,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMERNAME != null">
+        #{CUSTOMERNAME,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.ColdArrange">
+    update coldarrange
+    <set>
+      <if test="REGID != null">
+        REGID = #{REGID,jdbcType=INTEGER},
+      </if>
+      <if test="CABINETNO != null">
+        CABINETNO = #{CABINETNO,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMERID != null">
+        CUSTOMERID = #{CUSTOMERID,jdbcType=VARCHAR},
+      </if>
+      <if test="FRUITCATEGERY != null">
+        FRUITCATEGERY = #{FRUITCATEGERY,jdbcType=VARCHAR},
+      </if>
+      <if test="BEGINTIME != null">
+        BEGINTIME = #{BEGINTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ENDTIME != null">
+        ENDTIME = #{ENDTIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="TEMPRATURE != null">
+        TEMPRATURE = #{TEMPRATURE,jdbcType=REAL},
+      </if>
+      <if test="CABINETLOC != null">
+        CABINETLOC = #{CABINETLOC,jdbcType=VARCHAR},
+      </if>
+      <if test="OPERATER != null">
+        OPERATER = #{OPERATER,jdbcType=INTEGER},
+      </if>
+      <if test="OPERATETIME != null">
+        OPERATETIME = #{OPERATETIME,jdbcType=TIMESTAMP},
+      </if>
+      <if test="MOBILE != null">
+        MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      </if>
+      <if test="COLDOPERATOR != null">
+        COLDOPERATOR = #{COLDOPERATOR,jdbcType=INTEGER},
+      </if>
+      <if test="STOPCOLDOPERATOR != null">
+        STOPCOLDOPERATOR = #{STOPCOLDOPERATOR,jdbcType=INTEGER},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+      <if test="CUSTOMERNAME != null">
+        CUSTOMERNAME = #{CUSTOMERNAME,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.ColdArrange">
+    update coldarrange
+    set REGID = #{REGID,jdbcType=INTEGER},
+      CABINETNO = #{CABINETNO,jdbcType=VARCHAR},
+      CUSTOMERID = #{CUSTOMERID,jdbcType=VARCHAR},
+      FRUITCATEGERY = #{FRUITCATEGERY,jdbcType=VARCHAR},
+      BEGINTIME = #{BEGINTIME,jdbcType=TIMESTAMP},
+      ENDTIME = #{ENDTIME,jdbcType=TIMESTAMP},
+      TEMPRATURE = #{TEMPRATURE,jdbcType=REAL},
+      CABINETLOC = #{CABINETLOC,jdbcType=VARCHAR},
+      OPERATER = #{OPERATER,jdbcType=INTEGER},
+      OPERATETIME = #{OPERATETIME,jdbcType=TIMESTAMP},
+      MOBILE = #{MOBILE,jdbcType=VARCHAR},
+      COLDOPERATOR = #{COLDOPERATOR,jdbcType=INTEGER},
+      STOPCOLDOPERATOR = #{STOPCOLDOPERATOR,jdbcType=INTEGER},
+      REMARK = #{REMARK,jdbcType=VARCHAR},
+      CUSTOMERNAME = #{CUSTOMERNAME,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>

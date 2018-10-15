@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jkoss.dao.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.jkoss.pojo.Role">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="ORDERNO" jdbcType="INTEGER" property="ORDERNO" />
+    <result column="ROLENAME" jdbcType="VARCHAR" property="ROLENAME" />
+    <result column="REMARK" jdbcType="VARCHAR" property="REMARK" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ORDERNO, ROLENAME, REMARK
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where ID = #{ID,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from role
+    where ID = #{ID,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jkoss.pojo.Role">
+    insert into role (ID, ORDERNO, ROLENAME, 
+      REMARK)
+    values (#{ID,jdbcType=INTEGER}, #{ORDERNO,jdbcType=INTEGER}, #{ROLENAME,jdbcType=VARCHAR}, 
+      #{REMARK,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jkoss.pojo.Role">
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        ID,
+      </if>
+      <if test="ORDERNO != null">
+        ORDERNO,
+      </if>
+      <if test="ROLENAME != null">
+        ROLENAME,
+      </if>
+      <if test="REMARK != null">
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ID != null">
+        #{ID,jdbcType=INTEGER},
+      </if>
+      <if test="ORDERNO != null">
+        #{ORDERNO,jdbcType=INTEGER},
+      </if>
+      <if test="ROLENAME != null">
+        #{ROLENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jkoss.pojo.Role">
+    update role
+    <set>
+      <if test="ORDERNO != null">
+        ORDERNO = #{ORDERNO,jdbcType=INTEGER},
+      </if>
+      <if test="ROLENAME != null">
+        ROLENAME = #{ROLENAME,jdbcType=VARCHAR},
+      </if>
+      <if test="REMARK != null">
+        REMARK = #{REMARK,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jkoss.pojo.Role">
+    update role
+    set ORDERNO = #{ORDERNO,jdbcType=INTEGER},
+      ROLENAME = #{ROLENAME,jdbcType=VARCHAR},
+      REMARK = #{REMARK,jdbcType=VARCHAR}
+    where ID = #{ID,jdbcType=INTEGER}
+  </update>
+</mapper>
